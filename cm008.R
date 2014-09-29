@@ -23,9 +23,14 @@ max_minus_min
 max_minus_min(gDat$lifeExp)
 
 ## test it on more toy inputs
+max_minus_min(1:5)  ## integer on double
+max_minus_min(runif(1000)) ## random but valid input useful
+max_minus_min(rnorm(1000))
+
+## test it on dgpPercap and pop
 max_minus_min(gDat$gdpPercap)
-max_minus_min(gDat$year)
 max_minus_min(gDat$pop)
-max_minus_min(gDat$continent) #meanlingless for categorical data
 
-
+## test it on weird stuff
+max_minus_min(gDat$continent) # meanlingless for categorical data
+max_minus_min(c(0,1,NA,2,3,4)) # missing data
