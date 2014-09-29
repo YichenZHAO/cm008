@@ -92,10 +92,36 @@ the_probs <- c(0.25, 0.75)
 the_quantiles <- quantile(gDat$lifeExp, probs=the_probs)
 max(the_quantiles) - min(the_quantiles)
 
-qdiff1 <- function(my_x, my_probs){
+qdiff1 <- function(x, probs){
+  assert_that(is.numeric(x))
+  the_quantiles <- quantile(x, probs=the_probs)
+  max(the_quantiles) - min(the_quantiles)
+}
+qdiff1(gDat$lifeExp, probs=c(0,1))
+qdiff1(gDat$gdpPercap, probs=c(0,1))
+
+
+qdiff3 <- function(my_x, my_probs){
   assert_that(is.numeric(my_x))
   the_quantiles <- quantile(my_x, probs=my_probs)
   max(the_quantiles) - min(the_quantiles)
 }
-qdiff1(gDat$lifeExp, my_probs=c(0,1))
-qdiff1(gDat$gdpPercap, my_probs=c(0,1))
+qdiff3(gDat$lifeExp, my_probs=c(0,1))
+qdiff3(gDat$gdpPercap, my_probs=c(0,1))
+
+
+qdiff2 <- function(x, probs=c(0,1)){
+  assert_that(is.numeric(x))
+  the_quantiles <- quantile(x, probs=probs)
+  max(the_quantiles) - min(the_quantiles)
+}
+qdiff2(gDat$lifeExp)
+qdiff2(gDat$lifeExp, c(0.25,0.75))
+IQR(gDat$lifeExp)
+
+## revisit argument validity checking
+## probs to be in [0,1]
+## ? check that probs is length 2?
+## check that probs numeric
+
+qdiff1(gDat$lifeExp)
